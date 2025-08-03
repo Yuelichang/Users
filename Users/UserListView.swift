@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  UserListView.swift
 //  Users
 //
 //  Created by Yü Li Chang on 02.08.25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct UserListView: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,5 +20,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    UserListView()
 }
