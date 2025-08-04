@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Response: Decodable {
+struct UserResponse {
     let results: [User]
 }
 
-struct User: Decodable {
+struct User: Decodable, Identifiable {
     var id: String { login.uuid }
     let name: Name
     let email: String
@@ -37,7 +37,7 @@ struct Mockdata {
     static let sampleUser = User(name: User.Name(first: "Andy", last: "Lin"),
                                  email: "andi_lin@icloud.com",
                                  login: User.Login(uuid: "123"),
-                                 picture: User.Picture(thumbnail: "https://platform.vox.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/8232671/bossbabycover.jpg?quality=90&strip=all&crop=11.206896551724,0,77.586206896552,100", medium: "https://platform.vox.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/8232671/bossbabycover.jpg?quality=90&strip=all&crop=11.206896551724,0,77.586206896552,100"))
+                                 picture: User.Picture(thumbnail: "https://static.wikia.nocookie.net/bossbaby/images/1/1d/Jimbo.png/revision/latest?cb=20220416180336", medium: "https://static.wikia.nocookie.net/bossbaby/images/1/1d/Jimbo.png/revision/latest?cb=20220416180336"))
     
-    static let users = [sampleUser, sampleUser, sampleUser, sampleUser]
+    static let users = [sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser]
 }

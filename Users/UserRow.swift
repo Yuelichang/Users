@@ -1,0 +1,32 @@
+//
+//  UserRow.swift
+//  Users
+//
+//  Created by Yü Li Chang on 04.08.25.
+//
+
+import SwiftUI
+
+struct UserRow: View {
+    let users: User
+    var body: some View {
+        HStack{
+            AsyncImage(url: URL(string: users.picture.thumbnail)){ result in result.image?
+                    .resizable()
+                    .clipShape(.circle)
+                    .frame(width: 50, height: 50)
+                
+            }
+            VStack(alignment: .leading, spacing: 5){
+                Text(users.name.first)
+                Text(users.name.last)
+                    .bold()
+            }
+            Spacer()
+        }
+    }
+}
+
+#Preview {
+    UserRow(users: Mockdata.sampleUser)
+}

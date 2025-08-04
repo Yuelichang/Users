@@ -9,13 +9,12 @@ import SwiftUI
 
 struct UserListView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationView() {
+            List(Mockdata.users){ user in
+                UserRow(users: user)
+            }
+            .navigationTitle("Users")
         }
-        .padding()
     }
 }
 
