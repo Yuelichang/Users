@@ -13,6 +13,7 @@ final class UserListModel: ObservableObject{
     @Published var users: UserResponse?
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
+    @Published var selectedUser: User?
     
  
     func getUsers() async {

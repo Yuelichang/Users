@@ -16,7 +16,6 @@ struct UserRow: View {
                         .resizable()
                         .clipShape(.circle)
                         .frame(width: 50, height: 50)
-                    
                 }
                 VStack(alignment: .leading, spacing: 5){
                     Text(users.name.first)

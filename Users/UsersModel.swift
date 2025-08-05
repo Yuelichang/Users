@@ -17,10 +17,23 @@ struct User: Decodable, Identifiable {
     let email: String
     let login: Login
     let picture: Picture
-
+    let location: Location
+    let phone: String
+    
     struct Name: Decodable {
         let first: String
         let last: String
+    }
+    
+    struct Location: Decodable {
+        let street: Street
+        let city: String
+        let country: String
+    }
+    
+    struct Street: Decodable {
+        let name: String
+        let number: Int
     }
 
     struct Login: Decodable {
@@ -37,7 +50,13 @@ struct Mockdata {
     static let sampleUser = User(name: User.Name(first: "Andy", last: "Lin"),
                                  email: "andi_lin@icloud.com",
                                  login: User.Login(uuid: "123"),
-                                 picture: User.Picture(thumbnail: "https://static.wikia.nocookie.net/bossbaby/images/1/1d/Jimbo.png/revision/latest?cb=20220416180336", medium: "https://static.wikia.nocookie.net/bossbaby/images/1/1d/Jimbo.png/revision/latest?cb=20220416180336"))
+                                 picture: User.Picture(thumbnail: "https://static.wikia.nocookie.net/bossbaby/images/1/1d/Jimbo.png/revision/latest?cb=20220416180336", medium: "https://static.wikia.nocookie.net/bossbaby/images/1/1d/Jimbo.png/revision/latest?cb=20220416180336"),
+                                 location: User.Location(
+                                    street: User.Street(name: "TestStreet", number: 1),
+                                    city: "Vienna",
+                                    country: "Austria"),
+                                 phone: "123456789"
+                                 )
     
     static let users = [sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser]
 }

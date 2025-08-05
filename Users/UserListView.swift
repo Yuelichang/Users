@@ -12,25 +12,49 @@ struct UserListView: View {
     @ObservedObject var viewModel = UserListModel()
     
     
+    
     var body: some View {
-        NavigationView() {
-            if viewModel.isLoading {
-                LoadingView()
-            } else {
-                List(viewModel.users?.results ?? []){ user in
-                    UserRow(users: user)
+        ZStack {
+            NavigationView() {
+                if viewModel.isLoading {
+                    LoadingView()
+                } else {
+                    
+                    List(viewModel.users?.results ?? []) { user in
+                        UserRow(users: user)
+                            .onTapGesture {
+                                viewModel.selectedUser = user
+                            }
+                    }.navigationTitle("Users")
+                    
+                    
+//                    List(viewModel.users?.results ?? []) { user in
+//                        NavigationLink(destination: UserDetailsView(users: user)) {
+//                            UserRow(users: user)
+//                        }
+//                    }
+//                    .navigationTitle("Users")
+                    
                 }
-                .navigationTitle("Users")
-            }
             }.task {
                 await viewModel.getUsers()
             }
-        
-                .alert(item: $viewModel.alertItem) { alertItem in
-                    Alert(title: alertItem.title,
-                          message: alertItem.message,
-                          dismissButton: alertItem.dismissButton)
-                }
+            .alert(item: $viewModel.alertItem) { alertItem in
+                Alert(title: alertItem.title,
+                      message: alertItem.message,
+                      dismissButton: alertItem.dismissButton)
+            
+        }
+            if let user = viewModel.selectedUser {
+                Color.black.opacity(0.5)
+                    .ignoresSafeArea()
+                    .onTapGesture { viewModel.selectedUser = nil }
+
+                UserDetailsView(users: user, onDismiss: {viewModel.selectedUser = nil})
+                    .transition(.scale)
+                    .zIndex(1)
+            }
+        }
     }
 }
 
