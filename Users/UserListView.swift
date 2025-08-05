@@ -44,7 +44,9 @@ struct UserListView: View {
                       message: alertItem.message,
                       dismissButton: alertItem.dismissButton)
             
-        }
+            }
+            .blur(radius: viewModel.selectedUser == nil ? 0 : 5)
+            
             if let user = viewModel.selectedUser {
                 Color.black.opacity(0.5)
                     .ignoresSafeArea()
