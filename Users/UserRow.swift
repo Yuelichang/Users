@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserRow: View {
     let users: User
-    @ObservedObject var viewModel = UserListModel()
+    @ObservedObject var viewModel = UserListViewModel()
     var body: some View {
             HStack{
                 AsyncImage(url: URL(string: users.picture.thumbnail)) { result in
