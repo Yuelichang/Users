@@ -21,10 +21,15 @@ struct UserListView: View {
                 } else {
                     
                     List(viewModel.users?.results ?? []) { user in
-                        UserRow(users: user)
-                            .onTapGesture {
-                                viewModel.selectedUser = user
+                        Button(action: {
+                            viewModel.selectedUser = user
+                        }) {
+                            HStack {
+                                UserRow(users: user)
                             }
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
                     }.navigationTitle("Users")
                     
                     
