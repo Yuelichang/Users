@@ -1,5 +1,5 @@
 //
-//  UserListModel.swift
+//  UserListViewModel.swift
 //  Users
 //
 //  Created by Yü Li Chang on 04.08.25.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @MainActor
-final class UserListModel: ObservableObject{
+final class UserListViewModel: ObservableObject{
     @Published var users: UserResponse?
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
@@ -26,11 +26,11 @@ final class UserListModel: ObservableObject{
             if let userError = error as? UserErrors {
                 switch userError {
                 case .InvalidURL:
-                    self.alertItem = AlertContext.InvalidURL
+                    alertItem = AlertContext.InvalidURL
                 case .InvalidResponse:
-                    self.alertItem = AlertContext.InvalidResponse
+                    alertItem = AlertContext.InvalidResponse
                 case .InvalidData:
-                    self.alertItem = AlertContext.InvalidData
+                    alertItem = AlertContext.InvalidData
                 }
             } else {
                 self.alertItem = AlertItem(
