@@ -9,20 +9,21 @@ import SwiftUI
 
 struct UserRow: View {
     let users: User
+    @ObservedObject var viewModel = UserListModel()
     var body: some View {
-        HStack{
-            AsyncImage(url: URL(string: users.picture.thumbnail)){ result in result.image?
-                    .resizable()
-                    .clipShape(.circle)
-                    .frame(width: 50, height: 50)
-                
-            }
-            VStack(alignment: .leading, spacing: 5){
-                Text(users.name.first)
-                Text(users.name.last)
-                    .bold()
-            }
-            Spacer()
+            HStack{
+                AsyncImage(url: URL(string: users.picture.thumbnail)){ result in result.image?
+                        .resizable()
+                        .clipShape(.circle)
+                        .frame(width: 50, height: 50)
+                    
+                }
+                VStack(alignment: .leading, spacing: 5){
+                    Text(users.name.first)
+                    Text(users.name.last)
+                        .bold()
+                }
+                Spacer()
         }
     }
 }

@@ -8,12 +8,23 @@
 import SwiftUI
 
 struct UserListView: View {
+    
+    @ObservedObject var viewModel = UserListModel()
+    
     var body: some View {
         NavigationView() {
-            List(Mockdata.users){ user in
+            List(viewModel.users?.results ?? []){ user in
                 UserRow(users: user)
             }
             .navigationTitle("Users")
+            .task {
+                await viewModel.getUsers()
+            }
+        }
+        .alert(item: $viewModel.alertItem) { alertItem in
+            Alert(title: alertItem.title,
+                  message: alertItem.message,
+                  dismissButton: alertItem.dismissButton)
         }
     }
 }
