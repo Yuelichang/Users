@@ -28,22 +28,43 @@ struct UserDetailsView: View {
                 } else {
                     ProgressView()
                         .progressViewStyle(.circular)
-                        .scaleEffect(4)
+                        .scaleEffect(2)
                         .frame(width: 200, height: 200)
                 }
             }
-            .padding(.bottom, 30)
-            
             Text("\(users.name.first) \(users.name.last)")
-                .font(.headline)
+                .font(.system(size: 32))
                 .fontWeight(.bold)
-                
+                .padding()
             
-            Text(users.email)
-            Text("\(users.location.street.name) \(users.location.street.number)")
-            Text(users.location.city)
-            Text(users.location.country)
-            Text(users.phone)
+            VStack(alignment: .leading, spacing: 3) {
+                        
+                HStack {
+                    Image(systemName: "envelope")
+                        .frame(width: 20)
+                    Text(users.email)
+                }
+                HStack {
+                    Image(systemName: "house")
+                        .frame(width: 20)
+                    Text("\(users.location.street.name) \(users.location.street.number)")
+                }
+                HStack {
+                    Image(systemName: "location")
+                        .frame(width: 20)
+                    Text(users.location.city)
+                }
+                HStack {
+                    Image(systemName: "globe")
+                        .frame(width: 20)
+                    Text(users.location.country)
+                }
+                HStack {
+                    Image(systemName: "phone")
+                        .frame(width: 20)
+                    Text(users.phone)
+                }
+            }
         }
         .frame(width: 320, height: 530)
         .background(Color(.systemBackground))
@@ -61,11 +82,8 @@ struct UserDetailsView: View {
                 Image(systemName: "xmark")
                     .frame(width: 45, height: 45)
                     .foregroundColor(.black)
-                
             }
         }, alignment: .topTrailing)
-        
-                
     }
 }
 

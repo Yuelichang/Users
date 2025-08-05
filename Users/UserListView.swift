@@ -9,9 +9,7 @@ import SwiftUI
 
 struct UserListView: View {
     
-    @ObservedObject var viewModel = UserListModel()
-    
-    
+    @ObservedObject var viewModel = UserListViewModel()
     
     var body: some View {
         ZStack {
@@ -19,7 +17,6 @@ struct UserListView: View {
                 if viewModel.isLoading {
                     LoadingView()
                 } else {
-                    
                     List(viewModel.users?.results ?? []) { user in
                         Button(action: {
                             viewModel.selectedUser = user
@@ -31,15 +28,6 @@ struct UserListView: View {
                         }
                         .buttonStyle(.plain)
                     }.navigationTitle("Users")
-                    
-                    
-//                    List(viewModel.users?.results ?? []) { user in
-//                        NavigationLink(destination: UserDetailsView(users: user)) {
-//                            UserRow(users: user)
-//                        }
-//                    }
-//                    .navigationTitle("Users")
-                    
                 }
             }.task {
                 await viewModel.getUsers()
