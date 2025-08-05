@@ -9,7 +9,7 @@ import Foundation
 
 final class WebService {
     
-    static let baseUrl: String = "https://randomu😀ser.me/api/"
+    static let baseUrl: String = "https://randomuser.me/api/"
     static let usersUrl: String = baseUrl + "?results=20"
     
     static func getUsers() async throws -> UserResponse {

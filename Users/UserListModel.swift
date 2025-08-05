@@ -12,10 +12,13 @@ import SwiftUI
 final class UserListModel: ObservableObject{
     @Published var users: UserResponse?
     @Published var alertItem: AlertItem?
+    @Published var isLoading = false
     
  
     func getUsers() async {
         do {
+            isLoading = true
+            defer {isLoading = false}
             let users = try await WebService.getUsers()
                 self.users = users
         } catch {

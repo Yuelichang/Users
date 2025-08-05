@@ -11,21 +11,26 @@ struct UserListView: View {
     
     @ObservedObject var viewModel = UserListModel()
     
+    
     var body: some View {
         NavigationView() {
-            List(viewModel.users?.results ?? []){ user in
-                UserRow(users: user)
+            if viewModel.isLoading {
+                LoadingView()
+            } else {
+                List(viewModel.users?.results ?? []){ user in
+                    UserRow(users: user)
+                }
+                .navigationTitle("Users")
+                
             }
-            .navigationTitle("Users")
-            .task {
+            }.task {
                 await viewModel.getUsers()
             }
-        }
-        .alert(item: $viewModel.alertItem) { alertItem in
-            Alert(title: alertItem.title,
-                  message: alertItem.message,
-                  dismissButton: alertItem.dismissButton)
-        }
+                .alert(item: $viewModel.alertItem) { alertItem in
+                    Alert(title: alertItem.title,
+                          message: alertItem.message,
+                          dismissButton: alertItem.dismissButton)
+                }
     }
 }
 
