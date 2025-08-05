@@ -14,7 +14,7 @@ struct UserDetailsView: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: users.picture.medium)) { image in image
+            AsyncImage(url: URL(string: users.picture.large)) { image in image
                     .resizable()
                     .clipShape(.circle)
                     .frame(width: 200, height: 200)

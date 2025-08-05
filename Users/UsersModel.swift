@@ -42,7 +42,7 @@ struct User: Decodable, Identifiable {
     
     struct Picture: Decodable {
         let thumbnail: String
-        let medium: String
+        let large: String
     }
 }
 
@@ -50,7 +50,7 @@ struct Mockdata {
     static let sampleUser = User(name: User.Name(first: "Andy", last: "Lin"),
                                  email: "andi_lin@icloud.com",
                                  login: User.Login(uuid: "123"),
-                                 picture: User.Picture(thumbnail: "https://static.wikia.nocookie.net/bossbaby/images/1/1d/Jimbo.png/revision/latest?cb=20220416180336", medium: "https://static.wikia.nocookie.net/bossbaby/images/1/1d/Jimbo.png/revision/latest?cb=20220416180336"),
+                                 picture: User.Picture(thumbnail: "https://static.wikia.nocookie.net/bossbaby/images/1/1d/Jimbo.png/revision/latest?cb=20220416180336", large: "https://static.wikia.nocookie.net/bossbaby/images/1/1d/Jimbo.png/revision/latest?cb=20220416180336"),
                                  location: User.Location(
                                     street: User.Street(name: "TestStreet", number: 1),
                                     city: "Vienna",
