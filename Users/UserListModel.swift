@@ -23,7 +23,6 @@ final class UserListModel: ObservableObject{
             let users = try await WebService.getUsers()
                 self.users = users
         } catch {
-            print("Error caught: \(error)")
             if let userError = error as? UserErrors {
                 switch userError {
                 case .InvalidURL:

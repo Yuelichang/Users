@@ -14,12 +14,23 @@ struct UserDetailsView: View {
     
     var body: some View {
         VStack {
-            AsyncImage(url: URL(string: users.picture.large)) { image in image
-                    .resizable()
-                    .clipShape(.circle)
-                    .frame(width: 200, height: 200)
-            } placeholder: {
-                Text("Loading...")
+            AsyncImage(url: URL(string: users.picture.large)) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .clipShape(.circle)
+                        .frame(width: 200, height: 200)
+                } else if phase.error != nil {
+                    Image(systemName: "person.crop.circle")
+                        .resizable()
+                        .clipShape(.circle)
+                        .frame(width: 200, height: 200)
+                } else {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .scaleEffect(4)
+                        .frame(width: 200, height: 200)
+                }
             }
             .padding(.bottom, 30)
             
