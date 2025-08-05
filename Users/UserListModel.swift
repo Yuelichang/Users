@@ -36,7 +36,11 @@ final class UserListModel: ObservableObject{
                 self.alertItem = AlertItem(
                     title: Text("Unknown Error"),
                     message: Text(error.localizedDescription),
-                    dismissButton: .default(Text("OK"))
+                    dismissButton: .default(Text("Retry")){
+                        Task {
+                            await self.getUsers()
+                        }
+                    }
                 )
             }
         }

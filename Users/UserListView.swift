@@ -21,11 +21,11 @@ struct UserListView: View {
                     UserRow(users: user)
                 }
                 .navigationTitle("Users")
-                
             }
             }.task {
                 await viewModel.getUsers()
             }
+        
                 .alert(item: $viewModel.alertItem) { alertItem in
                     Alert(title: alertItem.title,
                           message: alertItem.message,
