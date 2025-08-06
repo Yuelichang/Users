@@ -17,6 +17,14 @@ struct UserListView: View {
                 if viewModel.isLoading {
                     LoadingView()
                 } else {
+                    VStack {
+                        Picker("Pick Gender", selection: $viewModel.selectedGender) {
+                            ForEach(Gender.allCases, id: \.self) {
+                                Text($0.rawValue.capitalized)
+                            }
+                            
+                        }
+                    }.pickerStyle(.segmented)
                     List{
                         ForEach(viewModel.filteredUsers) { user in
                             Button(action: {

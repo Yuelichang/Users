@@ -15,6 +15,7 @@ final class UserListViewModel: ObservableObject{
     @Published var isLoading = false
     @Published var selectedUser: User?
     @Published var searchTerm = ""
+    @Published var selectedGender = Gender.all
     
     
     func getUsers() async {
@@ -86,9 +87,9 @@ final class UserListViewModel: ObservableObject{
     }
     
     var filteredUsers: [User] {
-        guard !searchTerm.isEmpty else { return users?.results ?? []}
-        return users?.results.filter {
-            $0.name.last.localizedCaseInsensitiveContains(searchTerm)
+        users?.results.filter { user in
+            (selectedGender == .all || user.gender == selectedGender) &&
+            (searchTerm.isEmpty || user.name.last.localizedCaseInsensitiveContains(searchTerm))
         } ?? []
     }
 }

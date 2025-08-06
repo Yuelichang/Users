@@ -19,6 +19,7 @@ struct User: Decodable, Identifiable {
     let picture: Picture
     let location: Location
     let phone: String
+    let gender: Gender
     
     struct Name: Decodable {
         let first: String
@@ -55,7 +56,8 @@ struct Mockdata {
                                     street: User.Street(name: "TestStreet", number: 1),
                                     city: "Vienna",
                                     country: "Austria"),
-                                 phone: "123456789"
+                                 phone: "123456789",
+                                 gender: Gender.male
     )
     
     static let users = [sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser]
