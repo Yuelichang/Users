@@ -24,7 +24,9 @@ struct UserListView: View {
                             }
                             
                         }
-                    }.pickerStyle(.segmented)
+                        .pickerStyle(.segmented)
+                        .padding(.horizontal)
+                    }
                     List{
                         ForEach(viewModel.filteredUsers) { user in
                             Button(action: {
@@ -37,17 +39,16 @@ struct UserListView: View {
                             }
                             .contextMenu {
                                 Button {
-//                                    if let index = viewModel.users?.results.firstIndex(of: user) {
-//                                        viewModel.deleteUser(at: IndexSet(integer: index))
-//                                    }
+                                    //                                    if let index = viewModel.users?.results.firstIndex(of: user) {
+                                    //                                        viewModel.deleteUser(at: IndexSet(integer: index))
+                                    //                                    }
                                 } label: {
                                     Text("Delete")
                                 }
                             }
                             .buttonStyle(.plain)
                         }
-                        .onDelete(perform: viewModel.deleteUser
-                        )
+                        .onDelete(perform: viewModel.deleteUser)
                     }
                     .navigationTitle("Users")
                     .searchable(text: $viewModel.searchTerm, prompt: "Search user by last name")

@@ -17,6 +17,12 @@ final class UserListViewModel: ObservableObject{
     @Published var searchTerm = ""
     @Published var selectedGender = Gender.all
     
+    var filteredUsers: [User] {
+        users?.results.filter { user in
+            (selectedGender == .all || user.gender == selectedGender) &&
+            (searchTerm.isEmpty || user.name.last.localizedCaseInsensitiveContains(searchTerm))
+        } ?? []
+    }
     
     func getUsers() async {
         do {
@@ -84,12 +90,5 @@ final class UserListViewModel: ObservableObject{
     
     func deleteUser(at offsets: IndexSet) {
         users?.results.remove(atOffsets: offsets)
-    }
-    
-    var filteredUsers: [User] {
-        users?.results.filter { user in
-            (selectedGender == .all || user.gender == selectedGender) &&
-            (searchTerm.isEmpty || user.name.last.localizedCaseInsensitiveContains(searchTerm))
-        } ?? []
     }
 }

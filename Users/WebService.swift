@@ -24,10 +24,10 @@ final class WebService {
             }
             let decoder = JSONDecoder()
             return try decoder.decode(UserResponse.self, from: data)
-        } catch is URLError {
-            throw UserErrors.UnableToComplete
         } catch is DecodingError {
             throw UserErrors.InvalidData
+        } catch is URLError {
+            throw UserErrors.UnableToComplete
         } catch {
             throw UserErrors.InvalidResponse
         }
