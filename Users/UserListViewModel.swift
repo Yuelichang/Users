@@ -10,6 +10,7 @@ import SwiftUI
 
 @MainActor
 final class UserListViewModel: ObservableObject{
+    
     @Published var users: UserResponse?
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
@@ -88,7 +89,11 @@ final class UserListViewModel: ObservableObject{
         }
     }
     
-    func deleteUser(at offsets: IndexSet) {
-        users?.results.remove(atOffsets: offsets)
+    //    func deleteUser(at offsets: IndexSet) {
+    //        users?.results.remove(atOffsets: offsets)
+    //    }
+    
+    func deleteUser(withId id: String) {
+        users?.results.removeAll { $0.id == id }
     }
 }

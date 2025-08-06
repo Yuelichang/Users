@@ -14,7 +14,6 @@ struct AlertItem: Identifiable {
     let dismissButton: Alert.Button
 }
 
-
 struct AlertContext {
     static let InvalidURLTitle = Text("Server Error")
     static let InvalidURLMessage = Text("URL not found.")

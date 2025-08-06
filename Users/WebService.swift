@@ -31,7 +31,5 @@ final class WebService {
         } catch {
             throw UserErrors.InvalidResponse
         }
-        
-        
     }
 }

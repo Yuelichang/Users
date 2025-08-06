@@ -22,7 +22,6 @@ struct UserListView: View {
                             ForEach(Gender.allCases, id: \.self) {
                                 Text($0.rawValue.capitalized)
                             }
-                            
                         }
                         .pickerStyle(.segmented)
                         .padding(.horizontal)
@@ -37,19 +36,24 @@ struct UserListView: View {
                                 }
                                 .contentShape(Rectangle())
                             }
+                            .buttonStyle(.plain)
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    viewModel.deleteUser(withId: user.id)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
                             .contextMenu {
                                 Button {
-                                    //                                    if let index = viewModel.users?.results.firstIndex(of: user) {
-                                    //                                        viewModel.deleteUser(at: IndexSet(integer: index))
-                                    //                                    }
+                                    viewModel.deleteUser(withId: user.id)
                                 } label: {
                                     Text("Delete")
                                 }
                             }
-                            .buttonStyle(.plain)
                         }
-                        .onDelete(perform: viewModel.deleteUser)
                     }
+                    //                        .onDelete(perform: viewModel.deleteUser)
                     .navigationTitle("Users")
                     .searchable(text: $viewModel.searchTerm, prompt: "Search user by last name")
                 }
@@ -60,7 +64,6 @@ struct UserListView: View {
                 Alert(title: alertItem.title,
                       message: alertItem.message,
                       dismissButton: alertItem.dismissButton)
-                
             }
             .blur(radius: viewModel.selectedUser == nil ? 0 : 5)
             

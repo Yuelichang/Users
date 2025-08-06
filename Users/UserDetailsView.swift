@@ -38,7 +38,6 @@ struct UserDetailsView: View {
                 .padding()
             
             VStack(alignment: .leading, spacing: 3) {
-                
                 HStack {
                     Image(systemName: "envelope")
                         .frame(width: 20)
