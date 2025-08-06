@@ -10,7 +10,6 @@ import SwiftUI
 struct UserListView: View {
     
     @ObservedObject var viewModel = UserListViewModel()
-    @State var searchTerm = ""
     
     var body: some View {
         ZStack {
@@ -19,7 +18,7 @@ struct UserListView: View {
                     LoadingView()
                 } else {
                     List{
-                        ForEach(filteredUsers) { user in
+                        ForEach(viewModel.filteredUsers) { user in
                             Button(action: {
                                 viewModel.selectedUser = user
                             }) {
@@ -43,7 +42,7 @@ struct UserListView: View {
                         )
                     }
                     .navigationTitle("Users")
-                    .searchable(text: $searchTerm, prompt: "Search user by last name")
+                    .searchable(text: $viewModel.searchTerm, prompt: "Search user by last name")
                 }
             }.task {
                 await viewModel.getUsers()
@@ -65,12 +64,6 @@ struct UserListView: View {
                     .zIndex(1)
             }
         }
-    }
-    var filteredUsers: [User] {
-        guard !searchTerm.isEmpty else { return viewModel.users?.results ?? []}
-        return viewModel.users?.results.filter {
-            $0.name.last.localizedCaseInsensitiveContains(searchTerm)
-        } ?? []
     }
 }
 

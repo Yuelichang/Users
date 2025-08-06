@@ -14,6 +14,7 @@ final class UserListViewModel: ObservableObject{
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
     @Published var selectedUser: User?
+    @Published var searchTerm = ""
     
     
     func getUsers() async {
@@ -82,5 +83,12 @@ final class UserListViewModel: ObservableObject{
     
     func deleteUser(at offsets: IndexSet) {
         users?.results.remove(atOffsets: offsets)
+    }
+    
+    var filteredUsers: [User] {
+        guard !searchTerm.isEmpty else { return users?.results ?? []}
+        return users?.results.filter {
+            $0.name.last.localizedCaseInsensitiveContains(searchTerm)
+        } ?? []
     }
 }
