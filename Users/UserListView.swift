@@ -17,17 +17,22 @@ struct UserListView: View {
                 if viewModel.isLoading {
                     LoadingView()
                 } else {
-                    List(viewModel.users?.results ?? []) { user in
-                        Button(action: {
-                            viewModel.selectedUser = user
-                        }) {
-                            HStack {
-                                UserRow(users: user)
+                    List{
+                        ForEach(viewModel.users?.results ?? []) { user in
+                            Button(action: {
+                                viewModel.selectedUser = user
+                            }) {
+                                HStack {
+                                    UserRow(users: user)
+                                }
+                                .contentShape(Rectangle())
                             }
-                            .contentShape(Rectangle())
+                            .buttonStyle(.plain)
                         }
-                        .buttonStyle(.plain)
-                    }.navigationTitle("Users")
+                        .onDelete(perform: viewModel.deleteUser
+                        )
+                        .navigationTitle("Users")
+                    }
                 }
             }.task {
                 await viewModel.getUsers()
@@ -46,7 +51,6 @@ struct UserListView: View {
                     .onTapGesture { viewModel.selectedUser = nil }
                 
                 UserDetailsView(users: user, onDismiss: {viewModel.selectedUser = nil})
-                    .transition(.scale)
                     .zIndex(1)
             }
         }

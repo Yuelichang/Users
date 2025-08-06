@@ -35,9 +35,6 @@ final class UserListViewModel: ObservableObject{
                             }
                         }
                     )
-                    
-                    
-                    
                 case .InvalidResponse:
                     self.alertItem = AlertItem(
                         title: AlertContext.InvalidURLTitle,
@@ -81,5 +78,9 @@ final class UserListViewModel: ObservableObject{
                 )
             }
         }
+    }
+    
+    func deleteUser(at offsets: IndexSet) {
+        users?.results.remove(atOffsets: offsets)
     }
 }
