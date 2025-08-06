@@ -27,12 +27,21 @@ struct UserListView: View {
                                 }
                                 .contentShape(Rectangle())
                             }
+                            .contextMenu {
+                                Button {
+//                                    if let index = viewModel.users?.results.firstIndex(of: user) {
+//                                        viewModel.deleteUser(at: IndexSet(integer: index))
+//                                    }
+                                } label: {
+                                    Text("Delete")
+                                }
+                            }
                             .buttonStyle(.plain)
                         }
                         .onDelete(perform: viewModel.deleteUser
                         )
-                        .navigationTitle("Users")
                     }
+                    .navigationTitle("Users")
                 }
             }.task {
                 await viewModel.getUsers()
