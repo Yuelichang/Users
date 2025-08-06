@@ -35,7 +35,7 @@ struct User: Decodable, Identifiable {
         let name: String
         let number: Int
     }
-
+    
     struct Login: Decodable {
         let uuid: String
     }
@@ -56,7 +56,7 @@ struct Mockdata {
                                     city: "Vienna",
                                     country: "Austria"),
                                  phone: "123456789"
-                                 )
+    )
     
     static let users = [sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser, sampleUser]
 }

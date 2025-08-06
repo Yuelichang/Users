@@ -11,4 +11,5 @@ enum UserErrors: Error {
     case InvalidURL
     case InvalidResponse
     case InvalidData
+    case UnableToComplete
 }

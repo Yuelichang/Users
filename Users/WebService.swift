@@ -17,18 +17,20 @@ final class WebService {
             throw UserErrors.InvalidURL
         }
         
+        do {
             let (data, response) = try await URLSession.shared.data(from: url)
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                 throw UserErrors.InvalidResponse
             }
-            
-            do {
-                let decoder = JSONDecoder()
-                return try decoder.decode(UserResponse.self, from: data)
-            }catch {
-                throw UserErrors.InvalidData
-            }
+            let decoder = JSONDecoder()
+            return try decoder.decode(UserResponse.self, from: data)
+        } catch is URLError {
+            throw UserErrors.UnableToComplete
+        } catch is DecodingError {
+            throw UserErrors.InvalidData
+        } catch {
+            throw UserErrors.InvalidResponse
+        }
         
         
     }

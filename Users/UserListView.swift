@@ -36,7 +36,7 @@ struct UserListView: View {
                 Alert(title: alertItem.title,
                       message: alertItem.message,
                       dismissButton: alertItem.dismissButton)
-            
+                
             }
             .blur(radius: viewModel.selectedUser == nil ? 0 : 5)
             
@@ -44,7 +44,7 @@ struct UserListView: View {
                 Color.black.opacity(0.5)
                     .ignoresSafeArea()
                     .onTapGesture { viewModel.selectedUser = nil }
-
+                
                 UserDetailsView(users: user, onDismiss: {viewModel.selectedUser = nil})
                     .transition(.scale)
                     .zIndex(1)

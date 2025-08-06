@@ -16,16 +16,16 @@ struct AlertItem: Identifiable {
 
 
 struct AlertContext {
-    static let InvalidURL = AlertItem(title: Text("Server Error"),
-                                      message: Text("URL not found."),
-                                      dismissButton: .default(Text("OK")))
+    static let InvalidURLTitle = Text("Server Error")
+    static let InvalidURLMessage = Text("URL not found.")
     
-    static let InvalidResponse = AlertItem(title: Text("Server Error"),
-                                      message: Text("Invalid response from the server."),
-                                      dismissButton: .default(Text("OK")))
+    static let InvalidResponseTitle = Text("Server Error")
+    static let InvalidResponseMessage = Text("Invalid response from the server.")
     
-    static let InvalidData = AlertItem(title: Text("Server Error"),
-                                      message: Text("Data received from server was invalid."),
-                                      dismissButton: .default(Text("OK")))
+    static let InvalidDataTitle = Text("Server Error")
+    static let InvalidDataMessage = Text("Data received from server was invalid.")
+    
+    static let UnableToCompleteTitle = Text("Network Error")
+    static let UnableToCompleteMessage = Text("Unable to complete your request. Please check your internet connection.")
 }
 
