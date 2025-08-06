@@ -1,5 +1,5 @@
 //
-//  UsersModel.swift
+//  User.swift
 //  Users
 //
 //  Created by Yü Li Chang on 02.08.25.

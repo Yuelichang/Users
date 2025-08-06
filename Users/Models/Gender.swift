@@ -1,5 +1,5 @@
 //
-//  Enums.swift
+//  Gender.swift
 //  Users
 //
 //  Created by Yü Li Chang on 06.08.25.
